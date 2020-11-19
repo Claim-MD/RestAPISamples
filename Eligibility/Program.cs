@@ -12,7 +12,7 @@ namespace HttpClientPost
     {
         static async Task Main(string[] args)
         {
-            Result result = await send_eligibility_request(@"C:\Users\13365\Downloads\sample.270","sample.270", "9512UAdeOVhxyFRbIIoXEyPkxalr");
+            Result result = await send_eligibility_request(@"C:\Users\13365\Downloads\sample.270","sample.270", "accountkey");
             string json = JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
             Console.WriteLine(json);
         }
