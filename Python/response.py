@@ -6,7 +6,6 @@ import xml.etree.ElementTree as ET
 # responsekey file name
 responsekey_filename = "responseid.txt"
 lastresponseid = "0"
-accountKey = "accountKey"
 
 # get key from file
 if os.path.exists(responsekey_filename):
@@ -18,22 +17,11 @@ if os.path.exists(responsekey_filename):
     fp.close()
 url = "www.claim.md"
 connection = http.client.HTTPSConnection(url)
-boundary = "------------------------6e749b3a052e0543"
-
-
-content_type = "multipart/form-data; boundary={boundary}".format(boundary=boundary)
+accountKey = "accountkey goes here"
+content_type = "application/x-www-form-urlencoded"
 h = {'Content-Type': content_type}
 
-body = """--{boundary}\r
-Content-Disposition: form-data; name="AccountKey"\r
-\r
-{accountKey}\r
---{boundary}\r
-Content-Disposition: form-data; name="ResponseID"\r
-\r
-{responseid}\r
---{boundary}--\r
-""".format(accountKey=accountKey,boundary=boundary,responseid=lastresponseid)
+body = "AccountKey={accountKey}&ResponseID={lastresponseid}".format(accountKey=accountKey,lastresponseid=lastresponseid)
 
 #print(h)
 print(body)
